@@ -1,0 +1,16 @@
+{
+  "api": "passed",
+  "create": "passed",
+  "edit": "passed",
+  "xlsx_mapping": "passed",
+  "reject_invalid_values": "passed",
+  "reject_unknown_fields": "passed",
+  "duplicate_code": "passed",
+  "desktop": "1440 × 1000",
+  "mobile": "390 × 844; all seven sections, no horizontal overflow",
+  "download": "passed",
+  "browser_errors": [],
+  "preserved_formulas": 152585,
+  "source_verified": true,
+  "original_sha256": "245c88e50040fb5a7fb6c072fe517e0706d7180a4bf649b33333c0a29b0466cf"
+}
