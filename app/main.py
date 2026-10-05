@@ -29,6 +29,15 @@ async def lifespan(app):
 app=FastAPI(title='База исследования · тестовая версия',lifespan=lifespan)
 app.mount('/static',StaticFiles(directory=ROOT/'app/static'),name='static')
 
+@app.middleware("http")
+async def fresh_preview_responses(request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-store"
+    elif request.url.path == "/" or request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
 @app.get('/')
 def home(): return FileResponse(ROOT/'app/static/index.html')
 

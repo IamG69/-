@@ -3,7 +3,6 @@ let schema=[],mode='create',sections={},active='Пациенты',busy=false;
 const $=s=>document.querySelector(s);
 const groups=['Пациенты','Лабораторные результаты','Диагнозы','ЭКГ','Скрининг','Второй этап','Рекомендации врача'];
 function el(tag,props={},text=''){const node=document.createElement(tag);Object.assign(node,props);if(text)node.textContent=text;return node;}
-async function api(url,options){const response=await fetch(url,options);if(!response.ok){let msg='Ошибка соединения';try{const body=await response.json();msg=typeof body.detail==='string'?body.detail:JSON.stringify(body.detail);}catch{}throw Error(msg);}return response.json();}
 function status(message,error=false){$('#status').textContent=message;$('#status').className=error?'error':'success';}
 function makeField(f,record,required){const wrap=el('div',{className:'field'+(f.type==='textarea'?' wide':'')});const id='field-'+crypto.randomUUID();const label=el('label',{htmlFor:id},f.name);if(required)label.append(el('span',{className:'required'},' *'));wrap.append(label);let input;
 if(f.type==='select'){input=el('select');input.append(el('option',{value:''},'Не заполнено'));for(const o of f.options)input.append(el('option',{value:String(o.value)},o.label));}
