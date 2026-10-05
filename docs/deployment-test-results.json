@@ -1,0 +1,9 @@
+{
+  "image_build": "passed",
+  "PORT": 12345,
+  "health": "passed",
+  "create": "passed",
+  "export": "passed",
+  "persistent_disk_restart": "passed",
+  "memory_limit": "2 GB"
+}

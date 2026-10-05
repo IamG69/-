@@ -2,7 +2,8 @@ import json
 from pathlib import Path
 import openpyxl
 ROOT=Path(__file__).resolve().parents[1]
-w=openpyxl.load_workbook(ROOT/'data/01_База_исследования_рабочая.xlsx')
+working=ROOT/'data/01_База_исследования_рабочая.xlsx'
+w=openpyxl.load_workbook(working if working.exists() else ROOT/'templates/research-test.xlsx')
 sheets=['Пациенты','Лабораторные результаты','Диагнозы','ЭКГ','Скрининг','Второй этап','Текст рекомендаций врача','Рекомендации врача']
 units={r[0]:r[1] for r in w['Единицы измерения'].iter_rows(min_row=2,values_only=True) if r[0]}
 dictionary={(r[0],r[1]):r for r in w['Словарь данных'].iter_rows(min_row=2,values_only=True)}

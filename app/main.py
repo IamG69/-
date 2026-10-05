@@ -10,6 +10,7 @@ import openpyxl
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
+from app.storage import ensure_workbook
 
 ROOT=Path(__file__).resolve().parents[1]
 PATH=Path(os.environ.get('RESEARCH_WORKBOOK',ROOT/'data/01_База_исследования_рабочая.xlsx'))
@@ -21,6 +22,7 @@ book=None
 @asynccontextmanager
 async def lifespan(app):
  global book
+ ensure_workbook(PATH)
  book=openpyxl.load_workbook(PATH)
  yield
 

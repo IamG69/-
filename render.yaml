@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: research-mvp
+    runtime: docker
+    plan: standard
+    region: frankfurt
+    numInstances: 1
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: RESEARCH_WORKBOOK
+        value: /var/data/research-working.xlsx
+    disk:
+      name: research-workbook
+      mountPath: /var/data
+      sizeGB: 1
